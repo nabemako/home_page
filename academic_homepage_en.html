@@ -521,6 +521,106 @@
 
   .divider { height: 1px; background: var(--border); margin: 2rem 0; }
 
+  /* ── APPLICATIONS ── */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .app-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-card:hover {
+    box-shadow: 0 6px 24px rgba(13,34,68,0.10);
+    transform: translateY(-2px);
+  }
+
+  .app-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.25rem 0.75rem;
+  }
+
+  .app-icon {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  .app-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--navy);
+    font-weight: 400;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .app-platform {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .app-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 0.5rem 1.25rem 1.25rem;
+    flex: 1;
+  }
+
+  .app-footer {
+    padding: 0.85rem 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #000;
+    color: #fff;
+    font-size: 11px;
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .app-badge:hover { opacity: 0.8; }
+  .app-badge svg { flex-shrink: 0; }
+
+  .app-category {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 720px) {
 
@@ -621,6 +721,7 @@
       <li><button onclick="showPage('home')" id="nav-home" class="active">Home</button></li>
       <li><button onclick="showPage('research')" id="nav-research">Research</button></li>
       <li><button onclick="showPage('publications')" id="nav-publications">Publications</button></li>
+      <li><button onclick="showPage('apps')" id="nav-apps">Applications</button></li>
       <li><button onclick="showPage('profile')" id="nav-profile">Profile</button></li>
       <li><button onclick="showPage('contact')" id="nav-contact">Contact</button></li>
     </ul>
@@ -1137,6 +1238,70 @@
           IEEE Transactions on Electron Devices · Japanese Journal of Applied Physics · Journal of the Japanese Liquid Crystal Society · NEC Technical Journal · IDW · EDTM · IEEE BMAS · IDRC · SID Euro Display · CADTFT · OLEDs WORLD SUMMIT · PTC Forum Japan
         </div>
       </div>
+    </div>
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<!-- ═══ APPLICATIONS ═══ -->
+<div class="page" id="page-apps">
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="ttl">Applications</span></h2>
+    </div>
+
+    <p style="font-family:'EB Garamond',serif; font-size:16px; line-height:1.9; color:var(--text); margin-bottom:2.5rem;">
+      Alongside research activities, I develop mobile applications focused on learning and educational support.
+    </p>
+
+    <div class="app-grid">
+
+      <!-- Nabemako Anki -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/67/b8/97/67b8974a-6429-e62d-2cf2-61e086f77483/Placeholder.mill/460x0w.webp"
+                 alt="Nabemako Anki icon"
+                 onerror="this.style.background='var(--navy-mid)';this.style.display='block';">
+          </div>
+          <div class="app-meta">
+            <div class="app-name">Nabemako Anki</div>
+            <div class="app-platform">iOS · iPhone / iPad</div>
+          </div>
+        </div>
+        <div class="app-desc">
+          A flashcard-based memorization app designed for efficient study of vocabulary, terminology, formulas, and other content requiring repetitive learning. Create and manage your own personalized flashcard decks with a simple, intuitive interface.
+        </div>
+        <div class="app-footer">
+          <span class="app-category">Education</span>
+          <a class="app-badge"
+             href="https://apps.apple.com/jp/app/%E3%81%AA%E3%81%B9%E3%81%BE%E3%81%93%E6%9A%97%E8%A8%98/id6767868693"
+             target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 814 1000" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.4 135.4-316.9 269-316.9 70.1 0 128.4 46.3 172.5 46.3 43.1 0 111.2-49 191.5-49 30.8 0 110.8 2.6 173.5 80.2zm-170.8-113.4c-.3-2.6-.3-5.2-.3-7.9 0-78.4 55.7-159.3 151.4-159.3 6.5 0 13 .6 19.5 1.9-1.9 80.9-67.8 139.4-151.4 139.4-6.2.1-12.5-.2-19.2-1z"/>
+            </svg>
+            App Store
+          </a>
+        </div>
+      </div>
+
+      <!-- Placeholder -->
+      <div class="app-card" style="border-style:dashed; opacity:0.45; pointer-events:none;">
+        <div class="app-card-header">
+          <div class="app-icon" style="background:var(--cream-dark); display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:28px; color:var(--text-muted);">＋</span>
+          </div>
+          <div class="app-meta">
+            <div class="app-name" style="color:var(--text-muted);">Coming Soon</div>
+            <div class="app-platform">Next app in development</div>
+          </div>
+        </div>
+        <div class="app-desc">A new application is currently in preparation.</div>
+        <div class="app-footer">
+          <span class="app-category">—</span>
+        </div>
+      </div>
+
     </div>
   </div>
   <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
