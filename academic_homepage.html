@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渡邉 誠 | 日本電気株式会社 ナレッジサイエンス研究所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d2244;
+    --navy-mid: #1a3560;
+    --navy-light: #2a4a7f;
+    --accent: #b8860b;
+    --accent-light: #d4a820;
+    --cream: #faf8f4;
+    --cream-dark: #f0ece4;
+    --text: #1a1a2e;
+    --text-muted: #5a6478;
+    --border: #d0ccc4;
+    --white: #ffffff;
+    --section-max: 920px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    opacity: 0.9;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-logo span {
+    color: var(--accent-light);
+    font-style: italic;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links li button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.72);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 0 1.2rem;
+    height: 60px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+  }
+
+  .nav-links li button:hover,
+  .nav-links li button.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.05);
+    border-bottom: 2px solid var(--accent-light);
+  }
+
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding-top: 60px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .page.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero {
+    background: var(--navy);
+    padding: 5rem 2.5rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.025) 80px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.025) 80px
+    );
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -80px; top: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,134,11,0.15);
+  }
+
+  .hero-inner {
+    max-width: var(--section-max);
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--accent-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 0.25rem;
+    font-weight: 300;
+  }
+
+  .hero-affil {
+    font-size: 13px;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+    max-width: 540px;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25rem;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+  }
+
+  .hero-avatar {
+    width: 160px; height: 160px;
+    border-radius: 4px;
+    background: var(--navy-mid);
+    border: 1px solid rgba(184,134,11,0.3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hero-avatar-initials {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  .section {
+    max-width: var(--section-max);
+    margin: 0 auto;
+    padding: 4.5rem 2.5rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-label h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .section-label .en {
+    font-size: 20px;
+    font-family: 'DM Serif Display', serif;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .home-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3.5rem;
+  }
+
+  .home-card {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+
+  .home-card:hover { background: var(--cream-dark); }
+
+  .home-card-icon {
+    font-size: 22px;
+    margin-bottom: 0.75rem;
+    color: var(--navy-light);
+  }
+
+  .home-card h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .home-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* RESEARCH */
+  .research-intro {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .research-item {
+    border-left: 3px solid var(--navy);
+    padding: 1.5rem 0 1.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .research-item:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+  }
+
+  .research-item h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .research-item .en-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .research-item p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+
+  .kw {
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid var(--navy-light);
+    color: var(--navy-light);
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    font-family: 'EB Garamond', serif;
+  }
+
+  /* PUBLICATIONS */
+  .pub-section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--navy);
+    font-weight: 400;
+  }
+
+  .pub-section-title:first-of-type { margin-top: 0; }
+
+  .pub-item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(208,204,196,0.5);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .pub-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    min-width: 30px;
+    padding-top: 3px;
+  }
+
+  .pub-title {
+    font-size: 13.5px;
+    color: var(--navy);
+    font-weight: 500;
+    line-height: 1.55;
+    margin-bottom: 0.2rem;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .pub-detail {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .pub-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border-radius: 1px;
+    letter-spacing: 0.06em;
+    vertical-align: 2px;
+    font-style: normal;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .tag-journal { background: #e8eefc; color: #1a3a8f; }
+  .tag-conf    { background: #edf5e8; color: #2a5c1a; }
+  .tag-invited { background: #fef3e2; color: #7a4b00; }
+  .tag-patent  { background: #f5eafc; color: #5a1a8a; }
+  .tag-article { background: #f0f0f0; color: #444; }
+
+  /* PROFILE */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .profile-photo {
+    width: 200px; height: 260px;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+  }
+
+  .profile-photo-initials {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .profile-name-block {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .profile-name-ja {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 26px;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .profile-name-en {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .career-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    font-family: 'EB Garamond', serif;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .contact-row-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    min-width: 80px;
+    padding-top: 3px;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .contact-row-val {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .form-group { margin-bottom: 1.25rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    background: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    border-radius: 1px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--navy-light); }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0.7rem 2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 1px;
+  }
+
+  .form-submit:hover { background: var(--navy-light); }
+
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-family: 'EB Garamond', serif;
+    border-top: 2px solid var(--accent);
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+  @media (max-width: 720px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-avatar { display: none; }
+    .home-cards { grid-template-columns: 1fr; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links li button { font-size: 10px; padding: 0 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">Watanabe, M. <span>— NEC / 東京大学生産技術研究所</span></a>
+    <ul class="nav-links">
+      <li><button onclick="showPage('home')" id="nav-home" class="active">ホーム</button></li>
+      <li><button onclick="showPage('research')" id="nav-research">Research</button></li>
+      <li><button onclick="showPage('publications')" id="nav-publications">Publications</button></li>
+      <li><button onclick="showPage('profile')" id="nav-profile">プロフィール</button></li>
+      <li><button onclick="showPage('contact')" id="nav-contact">お問い合わせ</button></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0;margin-left:1.5rem;border:1px solid rgba(255,255,255,0.25);border-radius:2px;overflow:hidden;">
+      <a href="academic_homepage.html" style="font-family:'EB Garamond',serif;font-size:12px;letter-spacing:0.08em;color:var(--white);text-decoration:none;padding:4px 10px;background:rgba(255,255,255,0.15);">JP</a>
+      <a href="academic_homepage_en.html" style="font-family:'EB Garamond',serif;font-size:12px;letter-spacing:0.08em;color:rgba(255,255,255,0.55);text-decoration:none;padding:4px 10px;">EN</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Director, NEC Knowledge Science Research Laboratories · Fellow (Concurrent), IIS, the University of Tokyo</p>
+        <h1 class="hero-name">渡邉 誠</h1>
+        <p class="hero-title">ディレクター　日本電気株式会社 ナレッジサイエンス研究所</p>
+        <p class="hero-affil">東京大学生産技術研究所 フェロー（兼務）</p>
+        <p class="hero-tagline">
+          液晶セル・TFT（薄膜トランジスタ）を主とした<br>
+          ディスプレイデバイス全体のモデリングを専門とし、<br>
+          機械学習（リザバーコンピューティング）による<br>
+          高速・高精度な回路シミュレーションを研究。
+        </p>
+      </div>
+      <div class="hero-avatar">
+        <img src="pic3.jpg" alt="渡邉 誠" style="width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:3px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="en">Overview</span>&ensp;概要</h2>
+    </div>
+
+    <div class="home-cards">
+      <div class="home-card" onclick="showPage('research')">
+        <div class="home-card-icon">◈</div>
+        <h3>Research</h3>
+        <p>液晶セル・TFT（薄膜トランジスタ）・IGZO酸化物半導体FETなど、ディスプレイデバイス全体の機械学習モデル化（リザバーコンピューティング）と高速回路シミュレーション手法の開発。</p>
+      </div>
+      <div class="home-card" onclick="showPage('publications')">
+        <div class="home-card-icon">◉</div>
+        <h3>Publications</h3>
+        <p>原著論文・国際会議・招待講演・解説記事・特許（31件出願・25件登録）など幅広い研究業績。</p>
+      </div>
+      <div class="home-card" onclick="showPage('profile')">
+        <div class="home-card-icon">◎</div>
+        <h3>Profile &amp; CV</h3>
+        <p>液晶ディスプレイ開発から機械学習応用まで、長年にわたる研究・開発・エンジニアリングの経歴。</p>
+      </div>
+    </div>
+
+    <div class="section-label">
+      <h2><span class="en">Highlights</span>&ensp;主な業績ハイライト</h2>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-box">
+        <span class="stat-num">3</span>
+        <span class="stat-label">原著論文（筆頭）</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">7</span>
+        <span class="stat-label">国際会議論文（筆頭）</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">5</span>
+        <span class="stat-num" style="font-size:14px;color:var(--text-muted);">招待講演</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">25</span>
+        <span class="stat-label">登録特許（31件出願）</span>
+      </div>
+    </div>
+
+    <table style="width:100%; border-collapse:collapse;">
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.9rem 1.5rem 0.9rem 0; font-family:'EB Garamond',serif; font-size:13px; color:var(--text-muted); white-space:nowrap; vertical-align:top;">2026.6</td>
+        <td style="padding:0.9rem 0; font-size:14px;">東京大学生産技術研究所　フェローに就任しました。</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.9rem 1.5rem 0.9rem 0; font-family:'EB Garamond',serif; font-size:13px; color:var(--text-muted); white-space:nowrap; vertical-align:top;">2025</td>
+        <td style="padding:0.9rem 0; font-size:14px;">IEEE Transactions on Electron Devices に液晶セルのリザバーコンピューティングモデルと転移学習に関する論文が掲載されました。</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.9rem 1.5rem 0.9rem 0; font-family:'EB Garamond',serif; font-size:13px; color:var(--text-muted); white-space:nowrap; vertical-align:top;">2024</td>
+        <td style="padding:0.9rem 0; font-size:14px;">日本液晶学会誌に機械学習による液晶セルモデリングの解説記事が掲載されました。</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.9rem 1.5rem 0.9rem 0; font-family:'EB Garamond',serif; font-size:13px; color:var(--text-muted); white-space:nowrap; vertical-align:top;">2023</td>
+        <td style="padding:0.9rem 0; font-size:14px;">OLEDs WORLD SUMMIT にて招待講演 "From Device Technology Development to Complete Display Design" を行いました。IDW 2023 にて国際会議論文を発表。</td>
+      </tr>
+      <tr>
+        <td style="padding:0.9rem 1.5rem 0.9rem 0; font-family:'EB Garamond',serif; font-size:13px; color:var(--text-muted); white-space:nowrap; vertical-align:top;">2022</td>
+        <td style="padding:0.9rem 0; font-size:14px;">Japanese Journal of Applied Physics に高速液晶ディスプレイシミュレーション（並列リザバーコンピューティング）の論文を発表。IDW 2022・EDTM 2022 にて国際発表。</td>
+      </tr>
+    </table>
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<!-- ═══ RESEARCH ═══ -->
+<div class="page" id="page-research">
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="en">Research</span>&ensp;研究内容</h2>
+    </div>
+
+    <p class="research-intro">
+      液晶セル・薄膜トランジスタ（TFT）・IGZO（In-Ga-Zn酸化物）FETなど、フラットパネルディスプレイ（FPD）を構成するデバイス全体のモデリングと回路シミュレーションを専門としています。デバイス物理に基づくコンパクトモデル開発の豊富な実務経験を基盤に、近年は機械学習—とりわけリザバーコンピューティング（RC）—をデバイスモデル化に適用し、高速・高精度な回路シミュレーションの実現と設計パラメータ対応・転移学習による汎用化を目指しています。
+    </p>
+
+    <div class="research-item">
+      <h3>液晶セルのリザバーコンピューティングによるモデル化</h3>
+      <div class="en-title">Reservoir Computing Model for Liquid Crystal Cells</div>
+      <p>液晶セルの複雑な非線形・時系列応答を、リザバーコンピューティング（RC）を用いてマクロモデル化する研究です。従来の物理ベースモデルに比べ、計算コストを大幅に削減しながら高精度な動的挙動の再現を実現します。2022年から2025年にかけてJapanese Journal of Applied PhysicsおよびIEEE Transactions on Electron Devicesに成果を発表しています。</p>
+      <div class="kw-list">
+        <span class="kw">Reservoir Computing</span>
+        <span class="kw">Liquid Crystal Cell</span>
+        <span class="kw">Macro Modeling</span>
+        <span class="kw">Circuit Simulation</span>
+        <span class="kw">VerilogA</span>
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h3>転移学習と設計パラメータ対応の拡張</h3>
+      <div class="en-title">Transfer Learning Framework for Design Parameter Adaptation</div>
+      <p>構築したリザバーコンピューティングモデルを異なる設計パラメータに対して迅速に適応させるため、独自の転移学習フレームワークを開発しています。2025年のIEEE Transactions on Electron Devices掲載論文にて、設計パラメータに応答可能なモデルとその転移学習拡張を報告しました。</p>
+      <div class="kw-list">
+        <span class="kw">Transfer Learning</span>
+        <span class="kw">Design Parameters</span>
+        <span class="kw">IEEE Trans. Electron Devices</span>
+        <span class="kw">汎用化</span>
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h3>並列リザバーコンピューティングによる高速シミュレーション</h3>
+      <div class="en-title">High-Speed Simulation via Parallel Reservoir Computing</div>
+      <p>液晶ディスプレイの大規模回路シミュレーションを実用的な速度で実行するため、並列リザバーコンピューティングアーキテクチャを採用した高速化手法を研究しています。2022年のJapanese Journal of Applied Physicsにて初期成果を発表し、その後IDW 2022・2023でも展開を報告しました。</p>
+      <div class="kw-list">
+        <span class="kw">Parallel Computing</span>
+        <span class="kw">High-Speed Simulation</span>
+        <span class="kw">FPD</span>
+        <span class="kw">TFT-LCD</span>
+      </div>
+    </div>
+
+    <div class="research-item" style="border-bottom:none;">
+      <h3>TFT・トランジスタを含むディスプレイデバイスのコンパクトモデル開発</h3>
+      <div class="en-title">Compact Modeling of Display Devices: TFTs, Transistors, and Liquid Crystal Cells</div>
+      <p>ディスプレイの駆動を担う薄膜トランジスタ（TFT）や酸化物半導体FET（CAAC-IGZO マルチゲートFET）のPhysics-Basedコンパクトモデル開発、p-Si TFTの動的行動モデリング、液晶セルのVerilogAモデル化など、トランジスタから液晶セルまでディスプレイデバイス全体を回路シミュレーター上で扱うモデル技術を研究・開発してきました。IPS（インプレーンスイッチング）方式LCDの画素設計、EDA/CAD統合環境の構築など、デバイス〜システムレベルにわたる幅広い実績を有します。</p>
+      <div class="kw-list">
+        <span class="kw">TFT Compact Model</span>
+        <span class="kw">IGZO / CAAC FET</span>
+        <span class="kw">p-Si TFT</span>
+        <span class="kw">IPS LCD</span>
+        <span class="kw">VerilogA</span>
+        <span class="kw">Device Physics</span>
+        <span class="kw">EDA / CAD</span>
+        <span class="kw">FPD</span>
+      </div>
+    </div>
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<!-- ═══ PUBLICATIONS ═══ -->
+<div class="page" id="page-publications">
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="en">Publications</span>&ensp;研究業績</h2>
+    </div>
+
+    <!-- 原著論文 -->
+    <div class="pub-section-title">原著論文／学術雑誌論文（筆頭）</div>
+
+    <div class="pub-item">
+      <div class="pub-num">[1]</div>
+      <div>
+        <div class="pub-title">"Reservoir computing model for liquid crystal cell responsive to design parameter and its augmentation with novel transfer learning framework"<span class="pub-tag tag-journal">学術誌</span></div>
+        <div class="pub-detail">IEEE Transactions on Electron Devices, 72(2):911–918, 2025.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[2]</div>
+      <div>
+        <div class="pub-title">"Macro modeling of liquid crystal cell using machine learning method: reservoir computing approach"<span class="pub-tag tag-journal">学術誌</span></div>
+        <div class="pub-detail">Japanese Journal of Applied Physics, vol. 62, no. 2, p. 027001, 2023.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[3]</div>
+      <div>
+        <div class="pub-title">"High-speed liquid crystal display simulation using parallel reservoir computing approach"<span class="pub-tag tag-journal">学術誌</span></div>
+        <div class="pub-detail">Japanese Journal of Applied Physics, vol. 61, 087001, 2022.</div>
+      </div>
+    </div>
+
+    <!-- 国際会議 -->
+    <div class="pub-section-title">審査付き国際会議論文（筆頭）</div>
+
+    <div class="pub-item">
+      <div class="pub-num">[4]</div>
+      <div>
+        <div class="pub-title">Machine Learning Model of Liquid Crystal Cell Controllable by Design Parameters.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. IDW 2023 Conf., pages 101–104, 2023.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[5]</div>
+      <div>
+        <div class="pub-title">Circuit Simulation Model of Liquid Crystal Capacitor using Reservoir Computing Approach.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. IDW 2022 Conf., pages 104–107, 2022.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[6]</div>
+      <div>
+        <div class="pub-title">Physics-Based Compact Model for CAAC In-Ga-Zn Oxide Multi-Gate FETs with Free Shape of Fin.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. EDTM 2022 Conf., pages 157–359, 2022.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[7]</div>
+      <div>
+        <div class="pub-title">Dynamic behavioral modeling of p-Si TFTs and liquid crystal cells for FPDs.<span class="pub-tag tag-invited">招待</span><span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. CADTFT 2014 Conf., pages L–9, 2014.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[8]</div>
+      <div>
+        <div class="pub-title">Macro modeling of liquid crystal cell with VerilogA.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. IEEE BMAS 2007 Conf., pages 132–137, 2007.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[9]</div>
+      <div>
+        <div class="pub-title">Novel pixel structure for IPS TFT-LCD with color-shift free.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. IDRC'97 Conf., pages L–9, 1997.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[10]</div>
+      <div>
+        <div class="pub-title">Development of a 20.1 Diagonal Super Fine TFT LCD.<span class="pub-tag tag-conf">国際会議</span></div>
+        <div class="pub-detail">In Proc. SID Euro Display'96 Conf., pages 587–590, 1996.</div>
+      </div>
+    </div>
+
+    <!-- 解説記事 -->
+    <div class="pub-section-title">解説記事（筆頭）</div>
+
+    <div class="pub-item">
+      <div class="pub-num">[11]</div>
+      <div>
+        <div class="pub-title">渡辺誠, 小谷潔, 神保泰彦. 機械学習による液晶セルのモデリングと回路シミュレータへの実装.<span class="pub-tag tag-article">解説</span></div>
+        <div class="pub-detail">液晶：日本液晶学会誌, 28(4), 248–258, 2024.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[12]</div>
+      <div>
+        <div class="pub-title">FEATURES OF LIQUID CRYSTAL DISPLAY MATERIALS AND PROCESSES, Chapter 6: Active Matrix Driving and Circuit Simulation.<span class="pub-tag tag-article">書籍章</span></div>
+        <div class="pub-detail">pp. 105–130, Intech, 2011.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[13]</div>
+      <div>
+        <div class="pub-title">モニタ用 21.3型 UXGA TFT-LCD モジュールの開発.<span class="pub-tag tag-article">解説</span></div>
+        <div class="pub-detail">NEC技報, 52(10):3–6, 1998.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[14]</div>
+      <div>
+        <div class="pub-title">インプレーンスイッチング方式.<span class="pub-tag tag-article">解説</span></div>
+        <div class="pub-detail">O plus E（新技術コミュニケーションズ）, 206: 96–102, 1997年7月.</div>
+      </div>
+    </div>
+
+    <!-- 招待講演 -->
+    <div class="pub-section-title">招待講演</div>
+
+    <div class="pub-item">
+      <div class="pub-num">[15]</div>
+      <div>
+        <div class="pub-title">From Device Technology Development to Complete Display Design.<span class="pub-tag tag-invited">招待</span></div>
+        <div class="pub-detail">OLEDs WORLD SUMMIT, 2023.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[16]</div>
+      <div>
+        <div class="pub-title">機械学習による液晶セルのマクロモデル化と回路シミュレータへの組み込み.<span class="pub-tag tag-invited">招待</span></div>
+        <div class="pub-detail">日本液晶学会・物性/ソフトマターフォーラム合同講演会, 2023.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[17]</div>
+      <div>
+        <div class="pub-title">3社統合から CAD 統一への道のり.<span class="pub-tag tag-invited">招待</span></div>
+        <div class="pub-detail">PTC Forum Japan, 2017.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[18]</div>
+      <div>
+        <div class="pub-title">VDIを活用したグローバル設計環境構築の取り組み.<span class="pub-tag tag-invited">招待</span></div>
+        <div class="pub-detail">図研イノベーションワールド, 2016.</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">[19]</div>
+      <div>
+        <div class="pub-title">QRC Extractionによる高精度寄生素子抽出.<span class="pub-tag tag-invited">招待</span></div>
+        <div class="pub-detail">DA SHOW/CDNLive! Japan, 2009.</div>
+      </div>
+    </div>
+
+    <!-- 特許 -->
+    <div class="pub-section-title">特許（筆頭）</div>
+    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:1.5rem;">31件出願・25件登録（代表的なものを以下に示す）</p>
+
+    <div class="pub-item">
+      <div class="pub-num">特許</div>
+      <div>
+        <div class="pub-title">特許5079278<span class="pub-tag tag-patent">登録</span></div>
+        <div class="pub-detail">トランジスタモデルを用いたシミュレーション方法、及び、電界効果型トランジスタから成る回路の動作制御方法</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">特許</div>
+      <div>
+        <div class="pub-title">特許4947042<span class="pub-tag tag-patent">登録</span></div>
+        <div class="pub-detail">半透過型液晶表示装置の駆動方法</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">特許</div>
+      <div>
+        <div class="pub-title">特許4596101<span class="pub-tag tag-patent">登録</span></div>
+        <div class="pub-detail">液晶表示装置</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">特許</div>
+      <div>
+        <div class="pub-title">特許4407690<span class="pub-tag tag-patent">登録</span></div>
+        <div class="pub-detail">液晶表示装置</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">特許</div>
+      <div>
+        <div class="pub-title">特許3327287 / 3264270 / 3285011 / 3185778 他多数<span class="pub-tag tag-patent">登録</span></div>
+        <div class="pub-detail">アクティブマトリクス型液晶表示装置およびその製造・駆動方法 ほか（合計25件登録）</div>
+      </div>
+    </div>
+
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<!-- ═══ PROFILE ═══ -->
+<div class="page" id="page-profile">
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="en">Profile &amp; CV</span>&ensp;プロフィール・経歴</h2>
+    </div>
+
+    <div class="profile-grid">
+      <div>
+        <div class="profile-photo" style="overflow:hidden;">
+          <img src="pic3.jpg" alt="渡邉 誠" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+        </div>
+      </div>
+
+      <div>
+        <div class="profile-name-block">
+          <div class="profile-name-ja">渡邉 誠</div>
+          <div class="profile-name-en">Makoto Watanabe</div>
+          <div style="font-size:13px; color:var(--text-muted); margin-top:6px;">（ふりがな：わたなべ　まこと）</div>
+        </div>
+
+        <div style="margin-bottom:2rem; font-size:14px; line-height:1.85; color:var(--text-muted);">
+          日本電気株式会社 研究開発部門 ナレッジサイエンス研究所 ディレクター。東京大学生産技術研究所 フェロー（兼務）。東京大学大学院 工学系研究科にて博士（工学）取得。液晶セル・薄膜トランジスタ（TFT）・IGZO酸化物半導体FETなど、ディスプレイデバイス全体のモデリングと回路シミュレーションを専門とする。NEC・ソニー・ジャパンディスプレイ・ウシオ電機・シルバコ・ジャパンなど液晶・ディスプレイ産業で30年以上の研究開発経験を持ち、近年はリザバーコンピューティングを用いたデバイスの機械学習モデル化に注力。
+        </div>
+
+        <div class="career-section-title">職種</div>
+        <div style="font-size:14px; padding:0.75rem 0; border-bottom:1px solid var(--border);">ディレクター　日本電気株式会社 研究開発部門 ナレッジサイエンス研究所<br><span style="font-size:12.5px; color:var(--text-muted);">東京大学生産技術研究所 フェロー（兼務、2026年6月〜）</span></div>
+
+        <div class="career-section-title">専門分野</div>
+        <div style="font-size:14px; line-height:2; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+          ディスプレイデバイスモデリング（液晶セル・TFT・IGZO FET） ／ コンパクトモデル開発 ／ 回路シミュレーション ／ 機械学習（リザバーコンピューティング・転移学習） ／ CAD・EDA設計環境
+        </div>
+
+        <div class="career-section-title">学歴</div>
+        <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">1989.4 — 1993.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">東京大学 教養学部 基礎科学科第一　<span style="font-size:12px; color:var(--text-muted);">卒業</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2012.4 — 2014.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">グロービス経営大学院 経営研究科 経営専攻　<span style="font-size:12px; color:var(--text-muted);">修了・専門職（経営）</span></td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2019.4 — 2025.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">東京大学大学院 工学系研究科 先端学際工学専攻　<span style="font-size:12px; color:var(--text-muted);">修了・博士（工学）</span></td>
+          </tr>
+        </table>
+
+        <div class="career-section-title">職歴</div>
+        <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">1993.4 — 2001.6</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">日本電気株式会社　カラー液晶事業部 開発部　主任</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2001.7 — 2004.2</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">日本電気株式会社　HPC販売推進本部 海外部　主任</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2004.3 — 2012.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">ソニー株式会社　モバイルディスプレイ事業部 商品設計部　統括課長</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2012.4 — 2019.1</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">株式会社ジャパンディスプレイ　技術本部 技術推進部　ゼネラルマネージャー</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2019.2 — 2020.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">ウシオ電機株式会社　技術統括本部 開発部　部長</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2020.4 — 2024.2</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">株式会社シルバコ・ジャパン　ヴァイスプレジデント</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2024.3 — 2026.2</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">ウシオ電機株式会社　技術本部 研究開発部門　部門長</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2025.10 — 2026.3</td>
+            <td style="padding:0.75rem 0; vertical-align:top;">東京大学大学院 新領域創成科学研究科　客員連携研究員　<span style="font-size:12px;color:var(--text-muted);">（兼務）</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2026.3 — 現在</td>
+            <td style="padding:0.75rem 0; vertical-align:top; font-weight:500; color:var(--navy);">日本電気株式会社　研究開発部門 ナレッジサイエンス研究所　ディレクター</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1.5rem 0.75rem 0; color:var(--text-muted); white-space:nowrap; vertical-align:top; font-family:'EB Garamond',serif;">2026.6 — 現在</td>
+            <td style="padding:0.75rem 0; vertical-align:top; font-weight:500; color:var(--navy);">東京大学生産技術研究所　フェロー　<span style="font-size:12px; color:var(--text-muted); font-weight:400;">（兼務）</span></td>
+          </tr>
+        </table>
+
+        <div class="career-section-title">主な研究業績（件数）</div>
+        <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.7rem 1rem 0.7rem 0; color:var(--text-muted);">原著論文（筆頭）</td>
+            <td style="padding:0.7rem 0; font-weight:500; color:var(--navy);">3件</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.7rem 1rem 0.7rem 0; color:var(--text-muted);">審査付き国際会議論文（筆頭）</td>
+            <td style="padding:0.7rem 0; font-weight:500; color:var(--navy);">7件（うち招待1件）</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.7rem 1rem 0.7rem 0; color:var(--text-muted);">解説記事・書籍章（筆頭）</td>
+            <td style="padding:0.7rem 0; font-weight:500; color:var(--navy);">4件</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(208,204,196,0.4);">
+            <td style="padding:0.7rem 1rem 0.7rem 0; color:var(--text-muted);">招待講演</td>
+            <td style="padding:0.7rem 0; font-weight:500; color:var(--navy);">5件</td>
+          </tr>
+          <tr>
+            <td style="padding:0.7rem 1rem 0.7rem 0; color:var(--text-muted);">特許（筆頭）</td>
+            <td style="padding:0.7rem 0; font-weight:500; color:var(--navy);">31件出願・25件登録</td>
+          </tr>
+        </table>
+
+        <div class="career-section-title">主要掲載誌・発表会議</div>
+        <div style="font-size:13.5px; color:var(--text); line-height:2.1; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+          IEEE Transactions on Electron Devices ／ Japanese Journal of Applied Physics ／ 液晶：日本液晶学会誌 ／ NEC技報 ／ IDW ／ EDTM ／ IEEE BMAS ／ IDRC ／ SID Euro Display ／ CADTFT ／ OLEDs WORLD SUMMIT ／ PTC Forum Japan ／ 日本液晶学会
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="page" id="page-contact">
+  <div class="section">
+    <div class="section-label">
+      <h2><span class="en">Contact</span>&ensp;お問い合わせ</h2>
+    </div>
+
+    <div class="contact-wrap">
+      <div>
+        <div style="font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-muted); margin-bottom:1.5rem;">連絡先 · Contact Information</div>
+
+        <div class="contact-row">
+          <div class="contact-row-label">氏名</div>
+          <div class="contact-row-val">渡邉 誠（わたなべ まこと）</div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row-label">職種</div>
+          <div class="contact-row-val">ディレクター　日本電気株式会社 ナレッジサイエンス研究所<br><span style="font-size:12.5px; color:var(--text-muted);">東京大学生産技術研究所 フェロー（兼務）</span></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row-label">E-mail</div>
+          <div class="contact-row-val">（※お問い合わせフォームよりご連絡ください）</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p style="font-size:13px; color:var(--text-muted); line-height:1.85;">
+          研究内容・業績に関するご質問、共同研究・講演依頼、その他お問い合わせはフォームよりご連絡ください。
+        </p>
+
+        <div style="margin-top:1.75rem;">
+          <div style="font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.75rem;">専門キーワード</div>
+          <div class="kw-list">
+            <span class="kw">Reservoir Computing</span>
+            <span class="kw">Liquid Crystal</span>
+            <span class="kw">Machine Learning</span>
+            <span class="kw">Circuit Simulation</span>
+            <span class="kw">TFT-LCD</span>
+            <span class="kw">Transfer Learning</span>
+            <span class="kw">Device Modeling</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-muted); margin-bottom:1.5rem;">メッセージを送る · Send a Message</div>
+
+        <div class="form-group">
+          <label>お名前 · Name</label>
+          <input type="text" placeholder="山田 太郎">
+        </div>
+
+        <div class="form-group">
+          <label>所属 · Affiliation</label>
+          <input type="text" placeholder="〇〇大学 〇〇学部 / 〇〇株式会社">
+        </div>
+
+        <div class="form-group">
+          <label>メールアドレス · E-mail</label>
+          <input type="email" placeholder="example@mail.com">
+        </div>
+
+        <div class="form-group">
+          <label>件名 · Subject</label>
+          <input type="text" placeholder="研究内容のご質問 / 共同研究のご提案 等">
+        </div>
+
+        <div class="form-group">
+          <label>メッセージ · Message</label>
+          <textarea placeholder="お問い合わせ内容をご記入ください。"></textarea>
+        </div>
+
+        <button class="form-submit" onclick="handleSubmit()">送信する →</button>
+        <div id="submit-msg" style="margin-top:1rem; font-size:13px; color:#2a5c1a; display:none;">✓ メッセージを送信しました。</div>
+      </div>
+    </div>
+  </div>
+  <footer>© 2025 Makoto Watanabe · All rights reserved.</footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.getElementById('nav-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function handleSubmit() {
+    var msg = document.getElementById('submit-msg');
+    msg.style.display = 'block';
+    setTimeout(function() { msg.style.display = 'none'; }, 4000);
+  }
+</script>
+</body>
+</html>
