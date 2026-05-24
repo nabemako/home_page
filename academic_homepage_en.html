@@ -521,14 +521,94 @@
 
   .divider { height: 1px; background: var(--border); margin: 2rem 0; }
 
+  /* ── MOBILE ── */
   @media (max-width: 720px) {
-    .hero-inner { grid-template-columns: 1fr; }
+
+    /* Nav */
+    .nav-inner { padding: 0 1rem; height: auto; min-height: 60px; flex-wrap: wrap; gap: 0; }
+    .nav-logo { font-size: 13px; padding: 10px 0; flex: 1; }
+    .nav-logo span { display: none; }
+    .lang-switch { margin-left: auto; }
+    .nav-links {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links li button {
+      font-size: 10px;
+      padding: 0 0.75rem;
+      height: 40px;
+      white-space: nowrap;
+    }
+    .page { padding-top: 100px; }
+
+    /* Hero */
+    .hero { padding: 2.5rem 1.25rem 2.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 0; }
     .hero-photo { display: none; }
+    .hero-name { font-size: 2.2rem; }
+    .hero-eyebrow { font-size: 11px; }
+    .hero-tagline { font-size: 13px; }
+
+    /* Section */
+    .section { padding: 2.5rem 1.25rem; }
+    .section-label { margin-bottom: 1.75rem; }
+
+    /* Home cards */
     .home-cards { grid-template-columns: 1fr; }
-    .profile-grid { grid-template-columns: 1fr; }
-    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .home-card { padding: 1.5rem 1.25rem; }
+
+    /* Stats */
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .nav-links li button { font-size: 10px; padding: 0 0.6rem; }
+    .stat-num { font-size: 22px; }
+
+    /* News table */
+    table { display: block; }
+    table tr { display: flex; flex-direction: column; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+    table tr td:first-child { padding: 0 0 0.25rem 0 !important; font-size: 12px; }
+    table tr td:last-child { padding: 0 !important; }
+
+    /* Research */
+    .research-intro { font-size: 13.5px; }
+    .research-item { padding-left: 1.25rem; }
+    .research-item h3 { font-size: 17px; }
+    .kw { font-size: 10px; padding: 2px 8px; }
+
+    /* Publications */
+    .pub-section-title { font-size: 18px; }
+    .pub-item { grid-template-columns: 28px 1fr; gap: 0.75rem; }
+    .pub-title { font-size: 12.5px; }
+    .pub-detail { font-size: 12px; }
+    .pub-item a { font-size: 11.5px; }
+
+    /* Profile */
+    .profile-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .profile-photo { width: 140px; height: 180px; }
+    .profile-name-en { font-size: 22px; }
+
+    /* Career tables */
+    table[style] td { font-size: 12.5px; }
+    table[style] td:first-child { min-width: 0; white-space: normal !important; font-size: 11.5px; padding-right: 0.75rem !important; }
+
+    /* Contact */
+    .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-row-label { min-width: 65px; font-size: 10px; }
+    .form-group input,
+    .form-group textarea { font-size: 16px; }
+    .form-submit { width: 100%; text-align: center; padding: 0.9rem; }
+
+    /* Footer */
+    footer { font-size: 11px; padding: 1.5rem 1rem; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-name { font-size: 1.9rem; }
+    .pub-item { grid-template-columns: 1fr; }
+    .pub-num { display: none; }
   }
 </style>
 </head>
