@@ -585,6 +585,135 @@
 
   .divider { height: 1px; background: var(--border); margin: 2rem 0; }
 
+  /* ── SOFTWARE (desktop apps) ── */
+  .sw-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+  }
+
+  .sw-screenshot {
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #1a1a2e;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sw-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+  }
+
+  .sw-body {
+    padding: 1.5rem 1.75rem 1.25rem;
+  }
+
+  .sw-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sw-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    font-weight: 400;
+  }
+
+  .sw-version {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  .sw-platform {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .sw-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .sw-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sw-feature {
+    font-size: 12.5px;
+    color: var(--text);
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .sw-feature::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 10px;
+  }
+
+  .sw-footer {
+    padding: 0.85rem 1.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sw-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .sw-tag {
+    font-size: 10.5px;
+    padding: 2px 9px;
+    border: 1px solid var(--navy-light);
+    color: var(--navy-light);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    font-family: 'EB Garamond', serif;
+  }
+
+  @media (max-width: 720px) {
+    .sw-features { grid-template-columns: 1fr; }
+    .sw-title-row { flex-direction: column; gap: 0.5rem; }
+  }
+
   /* ── APPLICATIONS ── */
   .app-grid {
     display: grid;
@@ -1354,12 +1483,60 @@
 <div class="page" id="page-apps">
   <div class="section">
     <div class="section-label">
-      <h2><span class="en">Applications</span>&ensp;開発アプリ</h2>
+      <h2><span class="en">Applications</span>&ensp;開発ソフトウェア・アプリ</h2>
     </div>
 
-    <p style="font-family:'Noto Serif JP',serif; font-size:15px; line-height:1.9; color:var(--text); margin-bottom:2.5rem; font-weight:300;">
-      研究活動と並行して、学習・教育支援を目的としたモバイルアプリケーションの開発も行っています。
+    <p style="font-family:'Noto Serif JP',serif; font-size:15px; line-height:1.9; color:var(--text); margin-bottom:3rem; font-weight:300;">
+      研究活動の一環として、デバイスシミュレータや学習支援アプリケーションの開発を行っています。
     </p>
+
+    <!-- ── デスクトップソフトウェア ── -->
+    <div class="section-label">
+      <h2><span class="en">Desktop Software</span>&ensp;デスクトップソフトウェア</h2>
+    </div>
+
+    <!-- TFT Simulator -->
+    <div class="sw-card">
+      <div class="sw-screenshot">
+        <img src="TFT_SIM.png" alt="TFT Simulator スクリーンショット">
+      </div>
+      <div class="sw-body">
+        <div class="sw-title-row">
+          <div class="sw-name">TFT Simulator</div>
+          <span class="sw-version">Ver. 1.0 · 2026年7月</span>
+        </div>
+        <div class="sw-platform">macOS · Windows · Linux &ensp;|&ensp; Python / PyQt6</div>
+        <div class="sw-desc">
+          ポリシリコン薄膜トランジスタ（poly-Si TFT）向けの2次元有限要素法（FEM）ドリフト拡散シミュレータ。Scharfetter-Gummel離散化と完全結合Newton法を採用し、4バンドトラップDOS・ON/OFF過渡解析・内部物理量マップ（電場・キャリア密度・準フェルミ準位など）を実現。アバランシェ・バンド間トンネリング・Poole-Frenkel・TATなど、標準的な半導体デバイス物理モデルを網羅的に実装したGUIシミュレータです。
+        </div>
+        <div class="sw-features">
+          <div class="sw-feature">2次元 Scharfetter-Gummel 離散化 / 完全結合 Newton 法</div>
+          <div class="sw-feature">4バンドトラップ DOS（テール2バンド＋ガウス2バンド）</div>
+          <div class="sw-feature">静特性：Id–Vgs スイープ・Id–Vds スイープ・gm</div>
+          <div class="sw-feature">動特性：ON/OFF 過渡応答・ΔVth の時間発展</div>
+          <div class="sw-feature">内部物理量マップ：カラーマップ / 等高線（論文品質）</div>
+          <div class="sw-feature">インパクトイオン化・BTBT・Poole-Frenkel・TAT・Auger 再結合</div>
+          <div class="sw-feature">GB ポテンシャル障壁（Seto モデル）・速度飽和</div>
+          <div class="sw-feature">パラメータ JSON 保存・グラフ PNG/SVG/PDF 出力</div>
+        </div>
+      </div>
+      <div class="sw-footer">
+        <div class="sw-tags">
+          <span class="sw-tag">poly-Si TFT</span>
+          <span class="sw-tag">FEM / Drift-Diffusion</span>
+          <span class="sw-tag">Newton Solver</span>
+          <span class="sw-tag">Trap DOS</span>
+          <span class="sw-tag">Transient</span>
+          <span class="sw-tag">Field Map</span>
+          <span class="sw-tag">Python / PyQt6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── モバイルアプリ ── -->
+    <div class="section-label" style="margin-top:1rem;">
+      <h2><span class="en">Mobile Apps</span>&ensp;モバイルアプリ</h2>
+    </div>
 
     <div class="app-grid">
 
@@ -1392,7 +1569,7 @@
         </div>
       </div>
 
-      <!-- 今後追加予定のカード（プレースホルダー） -->
+      <!-- Coming Soon -->
       <div class="app-card" style="border-style:dashed; opacity:0.45; pointer-events:none;">
         <div class="app-card-header">
           <div class="app-icon" style="background:var(--cream-dark); display:flex; align-items:center; justify-content:center;">
